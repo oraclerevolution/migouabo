@@ -15,22 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/vendeuses', function(){
-    return view('vendeuses');
-});
 
 Route::get('/categories', function(){
-    return view('categories');
+    return view('pages.categories.categories');
 });
 
 Route::get('/add-categorie', function(){
-    return view('add-categorie');
+    return view('pages.categories.add-categorie');
 });
 
 Route::get('/add-vendeuse', function(){
-    return view('add-vendeuse');
+    return view('pages.sellers.add-vendeuse');
 });
 
 Route::get('/pending-commandes', function(){
-    return view('pending-commandes');
+    return view('pages.commands.pending-commandes');
 });
