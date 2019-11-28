@@ -27,7 +27,8 @@
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="form-wrap">
-                                <form action="#">
+                                <form action=" {{ route('add-categorie_path') }} ">
+                                    {{ csrf_field() }}
                                     <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-info-outline mr-10"></i>Ajouter une nouvelle catégorie</h6>
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
@@ -52,9 +53,11 @@
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Vendeuse</label>
                                                 <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                    <option value="Category 1">Akissi</option>
-                                                    <option value="Category 2">Fatim</option>
-                                                    <option value="Category 3">Dacoury</option>
+                                                    @foreach ($sellers as $seller)
+                                                        
+                                                        <option value=" {{ $seller->id }} "> {{ $seller->name }} </option>
+
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

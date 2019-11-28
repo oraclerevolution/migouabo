@@ -27,14 +27,16 @@
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="form-wrap">
-                                <form action="#">
+                            <form action="{{ route('add-vendeuse_path') }}" method="POST">
+                                    {{ csrf_field() }}
+
                                     <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-info-outline mr-10"></i>Ajouter une nouvelle vendeuse</h6>
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label mb-10">Nom de la vendeuse</label>
-                                                <input type="text" name="category-name" class="form-control" placeholder="Fruits">
+                                                <label for="seller_name" class="control-label mb-10">Nom de la vendeuse</label>
+                                                <input type="text" name="seller_name" id="seller_name" class="form-control" placeholder="Ex : Akissi">
                                             </div>
                                         </div>
                                         <!--/span-->
