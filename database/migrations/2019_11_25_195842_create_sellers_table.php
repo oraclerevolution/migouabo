@@ -18,6 +18,7 @@ class CreateSellersTable extends Migration
             $table->string('name');
             $table->string('photo');
             $table->text('description');
+            $table->timestamps();
         });
     }
 

@@ -7,27 +7,90 @@ use App\Seller;
 
 class SellerController extends Controller
 {
-    public function display(){
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $sellers=Seller::all();
         return view('pages.sellers.vendeuses')->withSellers($sellers);
     }
 
-    public function create(){
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         return view('pages.sellers.add-vendeuse');
     }
 
-    public function store(){
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $seller_name=request('seller_name');
         $description=request('description');
 
         Seller::create([
             'name'=>$seller_name,
-            'photo'=>'a picture',
+            'photo' => request()->photo->store('', 'public'),
             'description'=>$description
         ]);
         
-        return view('pages.sellers.vendeuses');
+        $sellers=Seller::all();
+        return view('pages.sellers.vendeuses')->withSellers($sellers);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
-

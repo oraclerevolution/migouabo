@@ -6,14 +6,14 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-              <h5 class="txt-dark">ajouter une vendeuse</h5>
+              <h5 class="txt-dark">ajouter une categorie</h5>
             </div>
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
               <ol class="breadcrumb">
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="#"><span>e-commerce</span></a></li>
-                <li class="active"><span>ajouter une vendeuse</span></li>
+                <li class="active"><span>ajouter une categorie</span></li>
               </ol>
             </div>
             <!-- /Breadcrumb -->
@@ -27,38 +27,52 @@
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="form-wrap">
-                            <form action="{{ route('sellers.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action=" {{ route('sellers.categories.sub-categories.store', [ 'seller'=>$seller->id,
+                                                                                                    'category'=>$category->id] ) }}
+                                                                                                    " method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-
-                                    <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-info-outline mr-10"></i>Ajouter une nouvelle vendeuse</h6>
+                                    <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-info-outline mr-10"></i>Ajouter une nouvelle catégorie</h6>
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="seller_name" class="control-label mb-10">Nom de la vendeuse</label>
-                                                <input type="text" name="seller_name" id="seller_name" class="form-control" placeholder="Ex : Akissi">
+                                                <label class="control-label mb-10">Nom de la sous catégorie</label>
+                                                <input type="text" name="name" class="form-control" placeholder="Fruits">
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label mb-10">Description</label>
-                                                <input type="text" name="description" class="form-control" placeholder="azerty qsdfgh wxcvbn">
+                                                <label for="description" class="control-label mb-10">Description</label>
+                                                <input type="text" id="description" name="description" class="form-control" placeholder="Description de la sous catégorie">
                                             </div>
                                         </div>
                                         <!--/span-->
                                     </div>
                                     <!-- Row -->
-                                    
-                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Catégorie</label>
+                                                <select name="category" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    
+                                                        
+                                                        <option value=" {{ $category->id }} "> {{ $category->name }} </option>
+
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
                                     
                                     <div class="seprator-block"></div>
-                                    <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>charger l'image de la vendeuse</h6>
+                                    <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>charger image</h6>
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="img-upload-wrap">
-                                                <img class="img-responsive" src="{{asset('public/storage/dist/img/chair.jpg')}}" alt="upload_img"> 
+                                                <img class="img-responsive" src="{{asset('public/tests/dist/img/chair.jpg')}}" alt="upload_img"> 
                                             </div>
                                             <div class="fileupload btn btn-info btn-anim"><i class="fa fa-upload"></i><span class="btn-text">Upload a new image</span>
                                                 <input type="file" name="photo" id="photo" class="upload">
@@ -69,7 +83,7 @@
                                     <hr class="light-grey-hr"/>
                                     
                                     <div class="form-actions">
-                                        <button class="btn btn-success btn-icon left-icon mr-10 pull-left"> <i class="fa fa-check"></i> <span>Ajouter</span></button>
+                                        <button type="submit" class="btn btn-success btn-icon left-icon mr-10 pull-left"> <i class="fa fa-check"></i> <span>Ajouter</span></button>
                                         <button type="button" class="btn btn-warning pull-left">Annuler</button>
                                         <div class="clearfix"></div>
                                     </div>

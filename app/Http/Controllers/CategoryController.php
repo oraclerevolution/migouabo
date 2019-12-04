@@ -4,25 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categories;
-use App\SubCategories;
 use App\Seller;
 use Illuminate\Support\Facades\DB;
 
-class subCategoriesController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_seller, $id_category)
+    public function index($id)
     {
-        $seller=Seller::where('id', $id_seller)->first();
-        $category=Categories::where('id', $id_category)->first();
-        $subCategories=SubCategories::where('id_category', $id_category)->get();
-
-        return view('pages.sub-categories.subCategories', compact('seller','category','subCategories'));
-
+        //$categories=DB::table('categories')->where('id_seller','=',$id);
+        /*$categories = DB::table('categories')
+                    ->join('sellers', 'categories.id_seller', '=', 'sellers.id')
+                    ->select('categories.*', 'sellers.*')
+                    ->where('categories.id_seller','=',$id)
+                    ->get();*/
+        $sellers=Seller::where('id',$id)
+                        ->first();
+        $categories=Categories::where('id_seller', $id)
+                                ->get();
+        
+        return view('pages.categories.categories', compact('categories','sellers'));
+        
     }
 
     /**
@@ -30,12 +36,11 @@ class subCategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_seller, $id_category)
+    public function create($id)
     {
-        $seller=Seller::where('id', $id_seller)->first();
-        $category=Categories::where('id', $id_category)->first();
-
-        return view('pages.sub-categories.add-subCategories', compact('seller','category'));
+        $sellers=Seller::where('id', $id)
+                        ->first();
+        return view('pages.categories.add-categorie')->withSellers($sellers);
     }
 
     /**
@@ -46,28 +51,25 @@ class subCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $subCategory_name=request('name');
+        $category_name=request('name');
         $description=request('description');
-        $id_category=request('category');
+        $seller=request('seller');
         
         
-        subCategories::create([
+        Categories::create([
 
 
-            'name'=>$subCategory_name,
+            'name'=>$category_name,
             'photo' => request()->photo->store('', 'public'),
             'description'=>$description,
-            'id_category'=>$id_category
+            'id_seller'=>$seller
         ]);
         
-        /*$seller=Seller::where('id', $seller)
-                        ->first();*/
-        $category=Categories::where('id', $id_category)
-                                ->first();
-        $id_seller=$category->id_seller;
-        $seller=Seller::where('id', $id_seller)->first();
-        $subCategories=SubCategories::where('id_category', $id_category)->get();
-        return view('pages.sub-categories.subCategories', compact('seller','category','subCategories'));
+        $sellers=Seller::where('id', $seller)
+                        ->first();
+        $categories=Categories::where('id_seller', $seller)
+                                ->get();
+        return view('pages.categories.categories', compact('categories','sellers'));
     }
 
     /**

@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class categories extends Model
 {
-    protected $fillable = ['nom','photo','id_seller'];
+    protected $fillable = ['name','photo','description','id_seller'];
 
     public function subCategories(){
-        return $this->hasMany('App\SubCategories', 'id_category','id');
+        return $this->hasMany('App\SubCategories');
+    }
+
+    public function seller(){
+        return $this->belongsTo('App\¨Seller');
     }
 
 }
