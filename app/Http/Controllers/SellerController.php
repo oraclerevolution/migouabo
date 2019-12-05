@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Seller;
+Use App\Http\Requests\SellerRequest;
 
 class SellerController extends Controller
 {
@@ -34,7 +35,7 @@ class SellerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SellerRequest $request)
     {
         $seller_name=request('seller_name');
         $description=request('description');

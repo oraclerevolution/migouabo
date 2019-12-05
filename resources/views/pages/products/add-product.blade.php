@@ -36,16 +36,18 @@
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                                 <label class="control-label mb-10">Nom du produit</label>
                                                 <input type="text" name="name" class="form-control" placeholder="Fruits">
+                                                {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                                                 <label for="description" class="control-label mb-10">Description</label>
                                                 <input type="text" id="description" name="description" class="form-control" placeholder="azerty qsdfgh wxcvbn">
+                                                {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -62,7 +64,7 @@
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group {{ $errors->has('stock') ? 'has-error' : '' }}">
                                                 <label class="control-label mb-10">Statut</label>
                                                 <div class="radio-list">
                                                     <div class="radio-inline pl-0">
@@ -78,6 +80,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {!! $errors->first('stock', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -85,22 +88,24 @@
                                     <!--/row-->
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                                                 <label for="price" class="control-label mb-10">Prix</label>
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><i class="ti-money"></i></div>
                                                     <input type="text" name="price" class="form-control" id="price" placeholder="1500 fcfa">
                                                 </div>
+                                                {!! $errors->first('price', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                        <div class="form-group {{ $errors->has('discount') ? 'has-error' : '' }}">
                                                 <label for="discount" class="control-label mb-10">Solde</label>
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><i class="ti-cut"></i></div>
-                                                    <input type="text" class="form-control" id="discount" name="discount" placeholder="0%">
+                                                    <input type="text" class="form-control" id="discount" value="0" name="discount" placeholder="0%">
                                                 </div>
+                                                {!! $errors->first('discount', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -112,13 +117,14 @@
                                     <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>charger image</h6>
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                    <div class="col-lg-12 {{ $errors->has('photo') ? 'has-error' : '' }}">
                                             <div class="img-upload-wrap">
                                                 <img class="img-responsive" src="{{asset('public/tests/dist/img/chair.jpg')}}" alt="upload_img"> 
                                             </div>
                                             <div class="fileupload btn btn-info btn-anim"><i class="fa fa-upload"></i><span class="btn-text">Upload a new image</span>
                                                 <input type="file" class="upload" name="photo">
                                             </div>
+                                            {!! $errors->first('photo', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
                                     

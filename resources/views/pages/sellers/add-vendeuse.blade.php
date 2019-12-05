@@ -34,16 +34,18 @@
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                        <div class="form-group {{ $errors->has('seller_name') ? 'has-error' : '' }}">
                                                 <label for="seller_name" class="control-label mb-10">Nom de la vendeuse</label>
                                                 <input type="text" name="seller_name" id="seller_name" class="form-control" placeholder="Ex : Akissi">
+                                                {!! $errors->first('seller_name', '<span class="help-block">:message</span>' ) !!}
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }} ">
                                                 <label class="control-label mb-10">Description</label>
                                                 <input type="text" name="description" class="form-control" placeholder="azerty qsdfgh wxcvbn">
+                                                {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -56,13 +58,14 @@
                                     <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>charger l'image de la vendeuse</h6>
                                     <hr class="light-grey-hr"/>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-12 form-group {{ $errors->has('photo') ? 'has-error' : '' }}">
                                             <div class="img-upload-wrap">
                                                 <img class="img-responsive" src="{{asset('public/storage/dist/img/chair.jpg')}}" alt="upload_img"> 
                                             </div>
                                             <div class="fileupload btn btn-info btn-anim"><i class="fa fa-upload"></i><span class="btn-text">Upload a new image</span>
                                                 <input type="file" name="photo" id="photo" class="upload">
                                             </div>
+                                            {!! $errors->first('photo','<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
                                     

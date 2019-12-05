@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\SubCategories;
 use App\Seller;
+Use App\Http\Requests\SubCategoryRequest;
 use Illuminate\Support\Facades\DB;
 
 class subCategoriesController extends Controller
@@ -44,7 +45,7 @@ class subCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubCategoryRequest $request)
     {
         $subCategory_name=request('name');
         $description=request('description');
