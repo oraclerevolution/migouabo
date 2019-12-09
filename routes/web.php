@@ -1,36 +1,21 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/seller', [
+    'as'=>'seller_path',
+    'uses'=>'NavMenuController@seller'
+]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/category', [
+    'as'=>'category_path',
+    'uses'=>'NavMenuController@category'
+]);
 
-Route::get('/vendeuses', function(){
-    return view('vendeuses');
-});
+Route::get('/command', [
+    'as'=>'command_path',
+    'uses'=>'NavMenuController@command'
+]);
 
-Route::get('/categories', function(){
-    return view('categories');
-});
-
-Route::get('/add-categorie', function(){
-    return view('add-categorie');
-});
-
-Route::get('/add-vendeuse', function(){
-    return view('add-vendeuse');
-});
-
-Route::get('/pending-commandes', function(){
-    return view('pending-commandes');
-});
+Route::resource('sellers', 'SellerController');
+Route::resource('sellers.categories', 'CategoryController');
+Route::resource('sellers.categories.sub-categories', 'subCategoriesController');
+Route::resource('sellers.categories.sub-categories.products', 'productController');
