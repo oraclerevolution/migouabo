@@ -23,7 +23,7 @@
     <div id="mobile_only_nav" class="mobile-only-nav pull-right">
         <ul class="nav navbar-right top-nav pull-right">
             <li>
-                <a id="open_right_sidebar" href="#"><i class="zmdi zmdi-settings top-nav-icon"></i></a>
+                    {{ Auth::user()->name }}
             </li>
             <li class="dropdown app-drp">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-apps top-nav-icon"></i></a>
@@ -111,7 +111,14 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="zmdi zmdi-power"></i><span>{{ __('Logout') }}</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                        </form>
                     </li>
                 </ul>
             </li>

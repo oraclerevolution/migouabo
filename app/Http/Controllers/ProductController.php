@@ -88,9 +88,21 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_seller, $id_category, $id_subCategory, $id_product)
     {
-        dd('qu\'est ce qui se passe');
+        
+        $product = DB::table('products')
+                    ->join('sub_categories', 'sub_categories.id', '=', 'products.id_sub_category')
+                    ->join('categories', 'categories.id', '=', 'sub_categories.id_category')
+                    ->join('sellers', 'categories.id_seller', '=', 'sellers.id')
+                    ->select('products.*',
+                            'sub_categories.name AS subCategoryName', 'sub_categories.id AS subCategoryId',
+                            'categories.name AS categoryName', 'categories.id AS categoryId',
+                            'sellers.name AS sellerName', 'sellers.id AS sellerId',)
+                    ->where('products.id','=',$id_product)
+                    ->first();
+
+        return  view('pages.products.detailsProduct', compact('product'));
     }
 
     /**
@@ -99,9 +111,21 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_seller, $id_category, $id_subCategory, $id_product)
     {
-        //
+        $sub_categories=SubCategories::all();
+        $product = DB::table('products')
+                    ->join('sub_categories', 'sub_categories.id', '=', 'products.id_sub_category')
+                    ->join('categories', 'categories.id', '=', 'sub_categories.id_category')
+                    ->join('sellers', 'categories.id_seller', '=', 'sellers.id')
+                    ->select('products.*',
+                            'sub_categories.name AS subCategoryName', 'sub_categories.id AS subCategoryId',
+                            'categories.name AS categoryName', 'categories.id AS categoryId',
+                            'sellers.name AS sellerName', 'sellers.id AS sellerId',)
+                    ->where('products.id','=',$id_product)
+                    ->first();
+
+        return view('pages.products.editProduct', compact('sub_categories','product'));
     }
 
     /**
@@ -111,9 +135,29 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id_seller, $id_category, $id_subCategory, $id_product)
     {
-        //
+        $name_product=request('name');
+        $description_product=request('description');
+        $sub_category=request('subCategory');
+        $stock_product=request('stock');
+        $price_product=request('price');
+        $status_product=request('stock');
+        $discount_product=request('discount');
+        $photo_product=request('photo');
+
+        Product::where('id', $id_product)
+                ->update(['name'=>$name_product,
+                        'photo' => request()->photo->store('', 'public'),
+                        'price'=>$price_product,
+                        'description'=>$description_product,
+                        'status'=>$status_product,
+                        'discount'=>$discount_product,
+                        'id_sub_category'=>$sub_category
+                        ]);
+        return redirect()->route('sellers.categories.sub-categories.products.show', ['seller'=>$id_seller, 'category'=>$id_category,
+                                                                                    'sub_category'=>$id_subCategory, 'product'=>$id_product
+                                                                                    ]);
     }
 
     /**

@@ -31,8 +31,8 @@
                                 <article class="col-item">
                                     <div class="photo">
                                         <div class="options">
-                                            <a href="add-products.html" class="font-18 txt-grey mr-10 pull-left"><i class="zmdi zmdi-edit"></i></a>
-                                            <a href="javascript:void(0);" class="font-18 txt-grey pull-left sa-warning"><i class="zmdi zmdi-close"></i></a>
+                                            <a href="sellers.categories.sub-categories.products.edit" class="font-18 txt-grey mr-10 pull-left"><i class="zmdi zmdi-edit"></i></a>
+                                            <a href="sellers.categories.sub-categories.products.destroy" class="font-18 txt-grey pull-left sa-warning"><i class="zmdi zmdi-close"></i></a>
                                         </div>
                                         
                                         <a href="javascript:void(0);"> <img src="{{asset('public/storage/'.$product->photo )}}" class="img-responsive" alt="Product Image" /> </a>
