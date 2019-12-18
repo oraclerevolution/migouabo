@@ -1,6 +1,6 @@
 <?php
 
-Route::view('/', 'auth.register');
+Route::view('/', 'pages.admin.login');
 
 Route::get('/seller', [
     'as'=>'seller_path',

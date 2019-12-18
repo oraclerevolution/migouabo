@@ -23,7 +23,7 @@
     <div id="mobile_only_nav" class="mobile-only-nav pull-right">
         <ul class="nav navbar-right top-nav pull-right">
             <li>
-                    {{ Auth::user()->name }}
+                    
             </li>
             <li class="dropdown app-drp">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-apps top-nav-icon"></i></a>

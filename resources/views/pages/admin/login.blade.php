@@ -28,12 +28,12 @@
                                 <div class="form-wrap">
                                     <form action="#">
                                         <div class="form-group">
-                                            <label class="control-label mb-10" for="exampleInputEmail_2">Adresse email</label>
+                                            <label class="control-label mb-10" for="exampleInputEmail_2">pseudo</label>
                                             <input type="email" class="form-control" required="" id="exampleInputEmail_2" placeholder="Entrez votre email ici">
                                         </div>
                                         <div class="form-group">
                                             <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Mot de passe</label>
-                                            <a class="capitalize-font txt-primary block mb-10 pull-right font-12" href="forgot-password.html">Mot de passe oublié ?</a>
+                                            
                                             <div class="clearfix"></div>
                                             <input type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Entrez votre mot de passe">
                                         </div>
